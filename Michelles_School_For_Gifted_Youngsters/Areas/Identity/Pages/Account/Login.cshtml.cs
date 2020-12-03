@@ -57,6 +57,11 @@ namespace Michelles_School_For_Gifted_Youngsters.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
+            if(User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("/");
+            }
+
             if (!string.IsNullOrEmpty(ErrorMessage))
             {
                 ModelState.AddModelError(string.Empty, ErrorMessage);
@@ -74,7 +79,9 @@ namespace Michelles_School_For_Gifted_Youngsters.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+
             returnUrl = returnUrl ?? Url.Content("~/");
+            
 
             if (ModelState.IsValid)
             {
@@ -83,8 +90,15 @@ namespace Michelles_School_For_Gifted_Youngsters.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
+                    var user = await _userManager.FindByNameAsync(Input.Email);
+
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                    if (user.UserRole == "Admin") 
+                    {
+                        return LocalRedirect(Url.Content("~/Admin/Index"));
+                    }
+
+                    return LocalRedirect(Url.Content("~/Student/Index"));
                 }
                 if (result.RequiresTwoFactor)
                 {

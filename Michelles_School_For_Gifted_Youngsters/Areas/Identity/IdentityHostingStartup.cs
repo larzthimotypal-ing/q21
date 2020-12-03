@@ -20,7 +20,14 @@ namespace Michelles_School_For_Gifted_Youngsters.Areas.Identity
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("StudentPotalDbContextConnection")));
 
-                services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                services.AddDefaultIdentity<AppUser>(options =>
+                {
+                    //Kyla*
+                    options.SignIn.RequireConfirmedAccount = false;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireUppercase = false;
+                    //*Kyla
+                })
                     .AddEntityFrameworkStores<StudentPotalDbContext>();
             });
         }

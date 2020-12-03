@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using Michelles_School_For_Gifted_Youngsters.Models;
 
 namespace Michelles_School_For_Gifted_Youngsters.Areas.Identity.Pages.Account
 {
@@ -47,6 +48,23 @@ namespace Michelles_School_For_Gifted_Youngsters.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "First Name")]
+            public string FirstName { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Last Name")]
+            public string LastName { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "User Role")]
+            public string UserRole { get; set; }
+
+
+            /////////////////////////////////////////////////////////////////////////////////////
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -75,7 +93,9 @@ namespace Michelles_School_For_Gifted_Youngsters.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new AppUser { UserName = Input.Email, Email = Input.Email };
+                var grades = new StudentGrades { };
+                var user = new AppUser { UserName = Input.Email, Email = Input.Email, FirstName = Input.FirstName,
+                LastName = Input.LastName, UserRole = Input.UserRole, GradesID = grades.ID};
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
@@ -98,7 +118,7 @@ namespace Michelles_School_For_Gifted_Youngsters.Areas.Identity.Pages.Account
                     }
                     else
                     {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        //await _signInManager.SignInAsync(user, isPersistent: false);
                         return LocalRedirect(returnUrl);
                     }
                 }
