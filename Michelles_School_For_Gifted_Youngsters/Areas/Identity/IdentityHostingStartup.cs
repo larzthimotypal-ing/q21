@@ -22,11 +22,11 @@ namespace Michelles_School_For_Gifted_Youngsters.Areas.Identity
 
                 services.AddDefaultIdentity<AppUser>(options =>
                 {
-                    //Kyla*
+
                     options.SignIn.RequireConfirmedAccount = false;
                     options.Password.RequireLowercase = false;
                     options.Password.RequireUppercase = false;
-                    //*Kyla
+                  
                 })
                     .AddEntityFrameworkStores<StudentPotalDbContext>();
             });

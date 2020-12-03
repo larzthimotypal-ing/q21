@@ -11,7 +11,6 @@ namespace Michelles_School_For_Gifted_Youngsters.Areas.Identity.Data
     // Add profile data for application users by adding properties to the AppUser class
     public class AppUser : IdentityUser
     {
-        //Kyla*
         [PersonalData]
         [Column(TypeName = "nvarchar(100)")]
         public string FirstName { get; set; }
@@ -27,6 +26,6 @@ namespace Michelles_School_For_Gifted_Youngsters.Areas.Identity.Data
 
         public int? GradesID { get; set; }
         public StudentGrades StudentGrades { get; set; }
-        //*Kyla
     }
+
 }
