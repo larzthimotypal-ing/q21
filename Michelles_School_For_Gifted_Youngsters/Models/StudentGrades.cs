@@ -8,15 +8,15 @@ namespace Michelles_School_For_Gifted_Youngsters.Models
 {
     public class StudentGrades
     {
-        //Mich*
+        
         [Key]
-        public int ID { get; set; }      
+        public int ID { get; set; }
         public int? Prelim { get; set; }
         public int? Midterm { get; set; }
         public int? PreFinals { get; set; }
         public int? Finals { get; set; }
         public float TotalGrade { get; set; }
-        public GradesForTerm GradesForTerm { get; set; } 
-        //*Mich
-    }  
+        public GradesForTerm GradesForTerm { get; set; }
+        
+    }
 }

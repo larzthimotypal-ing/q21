@@ -8,8 +8,8 @@ namespace Michelles_School_For_Gifted_Youngsters.Models
 {
     public class GradesForTerm
     {
-        
-        [Key] //Mich*
+
+        [Key]
         public int ID { get; set; }
         public int Term { get; set; }
         public int? quiz1 { get; set; }
@@ -19,7 +19,6 @@ namespace Michelles_School_For_Gifted_Youngsters.Models
         public int? assignment2 { get; set; }
         public int? assignment3 { get; set; }
         public GradeSheet GradeSheet { get; set; }
-        //*Mich
-
+       
     }
 }

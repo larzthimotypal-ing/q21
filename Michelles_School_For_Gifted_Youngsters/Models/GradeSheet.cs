@@ -8,12 +8,10 @@ namespace Michelles_School_For_Gifted_Youngsters.Models
 {
     public class GradeSheet
     {
-        //Mich*
         [Key]
         public int ID { get; set; }
         public int ItemScore { get; set; }
         public int ItemTotal { get; set; }
-        public float ItemGrade {get; set;}
-        //*Mich
+        public float ItemGrade { get; set; }
     }
 }
